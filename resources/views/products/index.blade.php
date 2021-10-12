@@ -43,9 +43,9 @@
                 <td>{{$productlist->created_at}}</td>
                 <td>{{$productlist->updated_at}}</td>
                 <td>
-                    <a href="{{route('products.edit',$productlist)}}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                    <a href="{{route('editproduct',$productlist)}}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
                     <a href="{{route('products.show',$productlist)}}" class="btn btn-info"><i class="fas fa-eye-slash"></i></a>
-                    <a href="/admin/products/{{$productlist->id}}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                    <a href="/admin/deleteproduct/{{$productlist->id}}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
 
                 </td>
             </tr>

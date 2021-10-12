@@ -17,6 +17,8 @@
   @include('partials.navbar')
   @include('partials.sidebar')
     <main class="py-4">
+        @include('partials.alert.error')
+        @include('partials.alert.success')
         @yield('content')
     </main>
     @include('partials.footer')

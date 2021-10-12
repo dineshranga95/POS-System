@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use Illuminate\Http\Request;
+use App\Http\Requests\ProductStoreRequest;
 
 class ProductController extends Controller
 {
@@ -15,6 +16,7 @@ class ProductController extends Controller
     public function index()
     {
         $products=Product::latest()->paginate(5);
+        //dd($products);
         return view ('products.index')->with('list',$products);
     }
 
@@ -34,15 +36,28 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductstoreRequest $request)
     {
-        $product = new Product();
-        $product->name=$request->name;
-        $product->barcode=$request->barcode;
-        $product->price=$request->price;
-        $product->save();
-        $products=Product::latest()->paginate(5);
-        return view ('products.index')->with('list',$products);
+        $validated = $request->validated();
+        $image_path="";
+        if($request->hasFile('image')){
+            $image_path=$request->file('image')->store('products');
+        }
+        $product=Product::create([
+            'name'=>$request->name,
+            'description'=>$request->description,
+            'image'=>$image_path,
+            'barcode'=>$request->barcode,
+            'price'=>$request->price,
+            'status'=>$request->status,
+
+        ]);
+        if(!$product){
+            return redirect()->back()->with('error', 'sorry, there a error while creaing a product');
+        }else{
+            return redirect()->route('products.index')->with('success', 'your product have been created');
+        }
+        
     }
 
     /**
@@ -85,11 +100,10 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
-        return 'hrloo';
-        //$product=Product::find($product->id);
-        //$product->delete();
-        //return redirect()->back();
+        $product=Product::find($id);
+        $product->delete();
+        return redirect()->back();
     }
 }
