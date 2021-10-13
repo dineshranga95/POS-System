@@ -37,7 +37,7 @@
             <tr>
                 <td>{{$productlist->id}}</td>
                 <td>{{$productlist->name}}</td>
-                <td>{{$productlist->image}}</td>
+                <td><img src="../images/{{$productlist->image}}" class="img-fluid" alt="" width="100" height="100"></td>
                 <td>{{$productlist->barcode}}</td>
                 <td>{{$productlist->price}}</td>
                 <td>{{$productlist->created_at}}</td>

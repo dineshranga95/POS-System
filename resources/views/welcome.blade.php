@@ -62,7 +62,7 @@
             
             <div class="text-center">                
                 <h1 style="font-size: 72px">POS SYSTEM</h1>
-                <img src="./img/pos1.jpg" class="img-fluid" alt="">
+                <img src="./images/pos1.jpg" class="img-fluid" alt="">
             </div>
         </div>
         <div>

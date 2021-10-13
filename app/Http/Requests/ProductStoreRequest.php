@@ -26,7 +26,7 @@ class ProductStoreRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
-            'image' => ['nullable'],
+            'image' => ['nullable','image'],
             'barcode' => ['required', 'string', 'unique:products','max:50'],
             'price' => ['required', 'regex:/^\d+(\.\d{1,2})?$/'],
             'status' => ['required', 'boolean'],

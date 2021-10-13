@@ -12,7 +12,7 @@
                 <!-- /.card-header -->
                 
                 <!-- form start -->
-                <form action="{{route('products.store')}}" method="post">
+                <form action="{{route('products.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
                   <div class="card-body">
                     <div class="form-group">
