@@ -2,6 +2,8 @@
 
 @section('content')
 <div class="content-wrapper d-flex justify-content-center">
+  @include('partials.alert.success')    
+    @include('partials.alert.error')
     <div class="col-md-6">
         <section class="content">
 

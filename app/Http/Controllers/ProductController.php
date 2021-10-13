@@ -39,8 +39,7 @@ class ProductController extends Controller
     public function store(ProductstoreRequest $request)
     {
         $validated = $request->validated();
-        //dd($request->image);
-        $image_path="";
+        $imageName="";
         if($request->hasFile('image')){
             $imageName=time().'.'.$request->image->extension();
             $request->image->move(public_path('images'),$imageName);
@@ -81,7 +80,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-       return view ('products.update');
+       return view ('products.update')->with('product',$product);
     }
 
     /**
@@ -91,9 +90,23 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(ProductstoreRequest $request, Product $product)
     {
-        //
+        $validated = $request->validated();
+        $imageName="";
+        if($request->hasFile('image')){
+            $imageName=time().'.'.$request->image->extension();
+            $request->image->move(public_path('images'),$imageName);
+        }
+        $product=Product::find($product->id);
+        $product->name = $request->name;
+        $product->description= $request->description;
+        $product->image=$imageName;
+        $product->price=$request->price;
+        $product->status=$request->status;
+        $product->save();
+
+        return redirect()->route('products.index')->with('success', 'your product have been updated');
     }
 
     /**

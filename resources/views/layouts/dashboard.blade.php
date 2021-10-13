@@ -16,9 +16,7 @@
 <div class="wrapper">
   @include('partials.navbar')
   @include('partials.sidebar')
-    <main class="py-4">
-        @include('partials.alert.error')
-        @include('partials.alert.success')
+    <main class="py-4">        
         @yield('content')
     </main>
     @include('partials.footer')

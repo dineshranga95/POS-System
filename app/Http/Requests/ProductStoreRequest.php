@@ -22,12 +22,14 @@ class ProductStoreRequest extends FormRequest
      * @return array
      */
     public function rules()
+
     {
+            $product_id=$this->route('product')->id;
         return [
             'name' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
             'image' => ['nullable','image'],
-            'barcode' => ['required', 'string', 'unique:products','max:50'],
+            'barcode' => ['required', 'string', 'unique:products,barcode,'.$product_id],
             'price' => ['required', 'regex:/^\d+(\.\d{1,2})?$/'],
             'status' => ['required', 'boolean'],
             'checkbox' =>['required'],

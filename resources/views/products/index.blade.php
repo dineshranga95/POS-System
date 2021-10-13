@@ -2,6 +2,8 @@
 
 @section('content')
 <div class="content-wrapper">
+    @include('partials.alert.success')    
+    @include('partials.alert.error')
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
@@ -26,6 +28,7 @@
                 <th>Name</th>
                 <th>Image</th>
                 <th>Barcode</th>
+                <th>Status</th>
                 <th>Price</th>
                 <th>Created At</th>
                 <th>Updated At</th>
@@ -39,6 +42,9 @@
                 <td>{{$productlist->name}}</td>
                 <td><img src="../images/{{$productlist->image}}" class="img-fluid" alt="" width="100" height="100"></td>
                 <td>{{$productlist->barcode}}</td>
+                <td>
+                    <span class="right badge badge-{{$productlist->status ? 'success':'danger'}}">{{$productlist->status ? 'Active':'Inactive'}}</span>
+                </td>
                 <td>{{$productlist->price}}</td>
                 <td>{{$productlist->created_at}}</td>
                 <td>{{$productlist->updated_at}}</td>
