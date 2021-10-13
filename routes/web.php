@@ -24,7 +24,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::prefix('admin')->group(function(){
     Route::resource('products', 'ProductController');
     Route::get('/editproduct/{product}', 'ProductController@edit')->name('editproduct');
-    Route::get('/deleteproduct/{id}', 'ProductController@destroy')->name('deleteproduct');
+    //Route::get('/deleteproduct/{id}', 'ProductController@destroy')->name('deleteproduct');
     
 });
 

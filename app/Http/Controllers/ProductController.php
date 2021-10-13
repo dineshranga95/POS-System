@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductStoreRequest;
+use App\Http\Requests\ProductUpdateRequest;
 
 class ProductController extends Controller
 {
@@ -50,6 +51,7 @@ class ProductController extends Controller
             'image'=>$imageName,
             'barcode'=>$request->barcode,
             'price'=>$request->price,
+            'quantity'=>$request->quantity,
             'status'=>$request->status,
 
         ]);
@@ -90,7 +92,7 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductstoreRequest $request, Product $product)
+    public function update(ProductUpdateRequest $request, Product $product)
     {
         $validated = $request->validated();
         $imageName="";
@@ -103,6 +105,7 @@ class ProductController extends Controller
         $product->description= $request->description;
         $product->image=$imageName;
         $product->price=$request->price;
+        $product->quantity=$request->quantity;
         $product->status=$request->status;
         $product->save();
 

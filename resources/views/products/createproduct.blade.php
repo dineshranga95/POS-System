@@ -56,6 +56,15 @@
                       @enderror
                       </div>
                       <div class="form-group">
+                        <label for="exampleInputPassword1">Quantity</label>
+                        <input type="text" id="quantity" name="quantity" placeholder="Enter Product Quantity" class="form-control @error('quantity') is-invalid @enderror" name="quantity" value="{{ old('quantity') }}"  autocomplete="quantity" autofocus>
+                        @error('quantity')
+                      <span class="invalid-feedback" role="alert" >
+                          <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
+                      </div>
+                      <div class="form-group">
                         <label for="exampleInputPassword1">Status</label>
                         <select name="status" id="status"  class="form-control @error('status') is-invalid @enderror" name="status">
                           <option value="1" {{old('status'===1 ? 'selected':"")}}>Active</option>
